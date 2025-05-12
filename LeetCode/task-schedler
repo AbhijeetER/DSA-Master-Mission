@@ -1,0 +1,20 @@
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        freq={}
+        lenght=len(tasks)
+        min=0
+        for char in tasks:
+            if char in freq:
+                freq[char]+=1
+            else:
+                freq[char]=1  #hash map
+        maxf = max(freq.values()) #max.value of the occurencee of a process
+        maxc = sum(1 for task in freq if freq[task] == maxf) #process with having max value 
+        partc = maxf - 1 #no. of frames A _ _ A _ _ A
+        partl = n + 1 # no. of elements in a frame
+        fills_spots = partc * partl + maxc #main logic
+        
+        return max(len(tasks), fills_spots) #max will be the answer.
+        
+            
+        
